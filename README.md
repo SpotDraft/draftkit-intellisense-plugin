@@ -1,71 +1,38 @@
 # draftkit-intellisense README
 
-This is the README for your extension "draftkit-intellisense". After writing up a brief description, we recommend including the following sections.
+This extension provides auto-complete for SpotDraft's internal, non-TS/JS utilities like colors and utility classes.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+#### Provides intellisense for color variables `--sdk-color-*` in CSS/SCSS & HTML Files.
 
-For example if there is an image subfolder under your extension project workspace:
+![css-colors](docs/color-css.png)
 
-\!\[feature X\]\(images/feature-x.png\)
+#### Provides intellisense for zIndex map values in CSS/SCSS & HTML Files.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![css-zIndex](docs/zindex-css.png)
 
-## Requirements
+#### Provides intellisense for background utility classes in HTML Files.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+![html-bg-utils](docs/bg-util-html.png)
 
-## Extension Settings
+## Installing
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Download the VSIX package from [Releases Page](https://github.com/SpotDraft/draftkit-intellisense/releases)
+![Installation from VSIX](docs/install.png)
 
-For example:
+## Building & Contributing
 
-This extension contributes the following settings:
+- Requires npm 14+
+- Clone the repo.
+- `npm ci`
+- Follow [instructions here](https://code.visualstudio.com/api/get-started/your-first-extension) to see your extension in action while developing.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### tokens.json
 
-## Known Issues
+The colors are exported from the [Figma file](https://www.figma.com/file/k9q8R0ZFooNZzn1l83qgkt/Universal-Design-System?node-id=174%3A5578) using the `Figma Tokens` plugins and then cleaned up to remove everything but `System Colors 2.0`
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### Packaging
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+For creating a new release, the VSCE CLI tool is required.
+[https://code.visualstudio.com/api/working-with-extensions/publishing-extension#packaging-extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension#packaging-extensions)

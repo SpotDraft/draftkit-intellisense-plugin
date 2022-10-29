@@ -3,6 +3,7 @@
   "displayName": "draftkit-intellisense",
   "description": "",
   "version": "0.0.1",
+  "repository": "https://github.com/SpotDraft/draftkit-intellisense",
   "engines": {
     "vscode": "^1.72.0"
   },

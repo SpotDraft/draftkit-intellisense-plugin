@@ -1,8 +1,15 @@
 import * as Tokens from "./tokens.json";
 import * as vscode from "vscode";
 
+const Z_INDEX_VALUES = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+
 const VARIABLE_TRIGGER = "--";
 const HTML_CLASS_TRIGGER = "sdk-";
+
+interface ColorDetail {
+  variableName: string;
+  hex: string;
+}
 
 function getColorPropsFromTokens() {
   const colors: Record<
@@ -15,10 +22,13 @@ function getColorPropsFromTokens() {
     const hues = Object.keys(colors[pallette]);
     const hueVariables = hues.map((hue) => {
       const hueVariable = hue.toLowerCase().replace(" ", "-");
-      return `${palletteVariable}-${hueVariable}`;
+      return <ColorDetail>{
+        variableName: `${palletteVariable}-${hueVariable}`,
+        hex: colors[pallette][hue].value,
+      };
     });
     return collection.concat(hueVariables);
-  }, <string[]>[]);
+  }, <ColorDetail[]>[]);
 }
 
 function htmlColorUtilAutoComplete(): vscode.CompletionItemProvider<vscode.CompletionItem> {
@@ -28,13 +38,14 @@ function htmlColorUtilAutoComplete(): vscode.CompletionItemProvider<vscode.Compl
       position: vscode.Position
     ) {
       const variables = getColorPropsFromTokens();
-      return variables.map(
-        (variable) =>
-          new vscode.CompletionItem(
-            `sdk-color-bg-${variable}`,
-            vscode.CompletionItemKind.EnumMember
-          )
-      );
+      return variables.map(({ variableName, hex }) => {
+        const item = new vscode.CompletionItem(
+          `sdk-color-bg-${variableName}`,
+          vscode.CompletionItemKind.Color
+        );
+        item.detail = hex;
+        return item;
+      });
     },
   };
 }
@@ -45,20 +56,33 @@ function colorsAutoComplete(): vscode.CompletionItemProvider<vscode.CompletionIt
       document: vscode.TextDocument,
       position: vscode.Position
     ) {
-      // get all text until the `position` and check if it reads `console.`
-      // and if so then complete if `log`, `warn`, and `error`
-      const linePrefix = document
-        .lineAt(position)
-        .text.substring(0, position.character);
-
       const variables = getColorPropsFromTokens();
-      return variables.map(
-        (variable) =>
-          new vscode.CompletionItem(
-            `--sdk-color-${variable}`,
-            vscode.CompletionItemKind.Color
-          )
-      );
+      return variables.map(({ variableName, hex }) => {
+        const item = new vscode.CompletionItem(
+          `--sdk-color-${variableName}`,
+          vscode.CompletionItemKind.Color
+        );
+        item.detail = hex;
+        return item;
+      });
+    },
+  };
+}
+
+function zIndexAutoComplete(): vscode.CompletionItemProvider<vscode.CompletionItem> {
+  return {
+    provideCompletionItems: function (
+      document: vscode.TextDocument,
+      position: vscode.Position
+    ) {
+      return Z_INDEX_VALUES.map((value, index) => {
+        const item: vscode.CompletionItem = new vscode.CompletionItem(
+          `--sdk-z-index-${index + 1}`,
+          vscode.CompletionItemKind.Value
+        );
+        item.detail = value.toString();
+        return item;
+      });
     },
   };
 }
@@ -84,4 +108,35 @@ export function getBgColorUtilAutocomplete() {
     htmlColorUtilAutoComplete(),
     HTML_CLASS_TRIGGER
   );
+}
+export function getCSSColorPropsInHtmlAutoComplete() {
+  return vscode.languages.registerCompletionItemProvider(
+    "html",
+    colorsAutoComplete(),
+    VARIABLE_TRIGGER
+  );
+}
+
+export function getCssProviders() {
+  return [
+    getCSSColorPropsAutocomplete(),
+    getSCSSColorPropsAutocomplete(),
+    getBgColorUtilAutocomplete(),
+    getCSSColorPropsInHtmlAutoComplete(),
+    vscode.languages.registerCompletionItemProvider(
+      "css",
+      zIndexAutoComplete(),
+      VARIABLE_TRIGGER
+    ),
+    vscode.languages.registerCompletionItemProvider(
+      "scss",
+      zIndexAutoComplete(),
+      VARIABLE_TRIGGER
+    ),
+    vscode.languages.registerCompletionItemProvider(
+      "html",
+      zIndexAutoComplete(),
+      VARIABLE_TRIGGER
+    ),
+  ];
 }
