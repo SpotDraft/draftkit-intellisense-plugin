@@ -30,7 +30,7 @@ Download the VSIX package from [Releases Page](https://github.com/SpotDraft/draf
 
 ### tokens.json
 
-The colors are exported from the [Figma file](https://www.figma.com/file/k9q8R0ZFooNZzn1l83qgkt/Universal-Design-System?node-id=174%3A5578) using the `Figma Tokens` plugins and then cleaned up to remove everything but `System Colors 2.0`
+The colors are exported from Figma using the `Figma Tokens` plugins and then cleaned up to remove everything but `System Colors 2.0`
 
 ### Packaging
 
