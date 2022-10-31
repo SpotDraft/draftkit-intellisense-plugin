@@ -18,7 +18,7 @@ This extension provides auto-complete for SpotDraft's internal, non-TS/JS utilit
 
 ## Installing
 
-Download the VSIX package from [Releases Page](https://github.com/SpotDraft/draftkit-intellisense/releases)
+Download the VSIX package from [Releases Page](https://github.com/SpotDraft/draftkit-intellisense-plugin/releases)
 ![Installation from VSIX](docs/install.png)
 
 ## Building & Contributing
