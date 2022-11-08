@@ -2,19 +2,31 @@
 
 This extension provides auto-complete for SpotDraft's internal, non-TS/JS utilities like colors and utility classes.
 
-## Features
+## Provides IntelliSense for -
 
-#### Provides intellisense for color variables `--sdk-color-*` in CSS/SCSS & HTML Files.
+#### Color variables `--sdk-color-*` in CSS/SCSS & HTML Files.
 
 ![css-colors](docs/color-css.png)
 
-#### Provides intellisense for zIndex map values in CSS/SCSS & HTML Files.
+#### zIndex map values in CSS/SCSS & HTML Files.
 
 ![css-zIndex](docs/zindex-css.png)
 
-#### Provides intellisense for background utility classes in HTML Files.
+#### Background utility classes in HTML Files.
 
 ![html-bg-utils](docs/bg-util-html.png)
+
+#### Typography Classes
+
+![typography](docs/typography-classes.png)
+
+#### Font Variables
+
+![typography](docs/font-variables.png)
+
+#### Spacing Utils
+
+![typography](docs/spacing-classes.png)
 
 ## Installing
 
