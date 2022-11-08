@@ -2,7 +2,7 @@
   "name": "draftkit-intellisense",
   "displayName": "Draftkit Intellisense",
   "description": "Provides auto-complete for SpotDraft's internal, non-TS/JS utilities like colors and utility classes.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": "https://github.com/SpotDraft/draftkit-intellisense",
   "publisher": "SpotDraft",
   "engines": {
